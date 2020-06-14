@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-04 22:02:17
- * @LastEditTime: 2020-06-07 18:30:50
+ * @LastEditTime: 2020-06-11 20:37:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my-project\src\pages\home\index.vue
@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       items: ["推荐", "分类", "最新", "专辑"],
-      current: 0
+      current: 3
     };
   },
   components: {
@@ -64,6 +64,7 @@ export default {
     uniSegmentedControl
   },
   methods: {
+    // tabs栏自带方法
     onClickItem(e) {
       if (this.current !== e.currentIndex) {
         this.current = e.currentIndex;
@@ -73,7 +74,7 @@ export default {
 };
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 .home_tab-title {
     position: relative;
     .title_inner {

@@ -2,6 +2,9 @@
 	"pages": [ 
 		{
 			"path": "pages/home/index"
+		},
+		{
+			"path": "pages/album/index"
 		}
 	],
 	"globalStyle": {

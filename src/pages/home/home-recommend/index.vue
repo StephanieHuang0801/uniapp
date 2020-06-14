@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-04 22:03:32
- * @LastEditTime: 2020-06-09 22:25:13
+ * @LastEditTime: 2020-06-11 20:39:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my-project\src\pages\home\home-recommend\index.vue
@@ -10,9 +10,9 @@
   <scroll-view scroll-y class="recommend_view" @scrolltolower="handlerToLower">
     <!-- 推荐列表 开始 -->
     <view class="recommend_wrap">
-        <view class="recommend_item" v-for="item in recommends" :key="item.id">
+        <navigator :url="`/pages/album/index?id=${item.target}`" class="recommend_item" v-for="item in recommends" :key="item.id">
           <image :src="item.thumb" mode="widthFix"></image>
-        </view>
+        </navigator>
     </view>
     <!-- 推荐列表  -->
     <!-- 月份列表 开始 -->
@@ -75,6 +75,7 @@ export default {
           this.months.DD = moment(this.months.stime).format("DD")
         }
         this.hots = [...this.hots, ...res.res.vertical]
+        console.log('推荐列表', res.res.homepage[1].items)
       })
     },
     handlerToLower() {
@@ -82,7 +83,7 @@ export default {
         this.params.skip+=this.params.limit
         this.getList()
       } else {
-        uni.toast({
+        uni.showToast({
           title: '到底了:)',
           icon: 'none'
         })
@@ -91,6 +92,9 @@ export default {
   },
   mounted() {
     this.getList()
+    uni.setNavigationBarTitle({
+      title: '推荐'
+    })
   },
   data() {
     return {
@@ -112,7 +116,7 @@ export default {
 };
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 .recommend_view {
   height: calc(100vh - 45px);
 }
