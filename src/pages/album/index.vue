@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-11 20:55:26
- * @LastEditTime: 2020-06-14 12:07:16
+ * @LastEditTime: 2020-06-14 20:59:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my-project\src\pages\home\album\index.vue
@@ -32,9 +32,11 @@
     <!-- 作者信息 开始 -->
     <!-- 专辑墙纸 开始 -->
     <view class="wallpaper">
-        <view class="wallpaper_image" v-for="item in wallpaper" :key="item.id">
+        <view class="wallpaper_image" v-for="(item, index) in wallpaper" :key="item.id">
             <!-- :src="item.thumb+item.rule.replace('$<Height>',360)" -->
-            <image :src="item.thumb+item.rule.replace('$<Height>',360)" mode="scaleToFill"></image>
+           <go-detail :list="wallpaper" :index="index" class="wallpaperDetail">    
+              <image :src="item.thumb+item.rule.replace('$<Height>',360)" mode="widthFix" ></image>
+           </go-detail>
         </view>
     </view>
     <!-- 专辑墙纸 结束 -->
@@ -43,10 +45,16 @@
 </template>
 
 <script>
+import goDetail from '../../components/goDetail'
 export default {
   onLoad(options) {
     this.id = options.id
+    // 这个仕女图有图片评论数据返回
+    // this.id = '5e0ea895e7bce739990ba8a1'
     this.getAlbumDetail()
+  },
+  components: {
+    goDetail
   },
   onReachBottom() {
     this.params.skip += this.params.limit
@@ -67,7 +75,7 @@ export default {
         // url: `http://157.122.54.189:9088/image/v1/wallpaper/album/5e5cf679e7bce739db1281e4/wallpaper`,
         data: this.params
       }).then(res => {
-          console.log(res)
+          // console.log(res)
           if (Object.keys(this.album).length === 0) {
               this.album = res.res.album
           }
@@ -103,11 +111,6 @@ export default {
 <style lang='scss' scoped>
 .bgImg {
    position: relative;
-  .imgContent {
-    image {
-
-    }
-  }
   .bgInfo {
     display: flex;
     height: 80rpx;
@@ -141,9 +144,6 @@ export default {
     .author_avatar {
       height: 70rpx;
       width: 70rpx;
-      image {
-
-      }
     }
 
     .name {
@@ -167,14 +167,15 @@ export default {
   flex-wrap: wrap;
   .wallpaper_image {
     width: 33.3%;
-    height: 170rpx;
-    border: 3rpx solid #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    image {
-      width: 100%;
+    height: 130rpx;
+    border: 1rpx solid #fff;
+    .wallpaperDetail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 100%;
+      width: 100%;
+      overflow: hidden;
     }
   }
 }

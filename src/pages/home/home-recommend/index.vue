@@ -1,13 +1,13 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-04 22:03:32
- * @LastEditTime: 2020-06-11 20:39:48
+ * @LastEditTime: 2020-06-14 16:12:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my-project\src\pages\home\home-recommend\index.vue
 --> 
 <template>
-  <scroll-view scroll-y class="recommend_view" @scrolltolower="handlerToLower">
+  <scroll-view scroll-y class="recommend_view" @scrolltolower="handlerToLower" v-if="recommends.length > 0">
     <!-- 推荐列表 开始 -->
     <view class="recommend_wrap">
         <navigator :url="`/pages/album/index?id=${item.target}`" class="recommend_item" v-for="item in recommends" :key="item.id">
@@ -16,7 +16,7 @@
     </view>
     <!-- 推荐列表  -->
     <!-- 月份列表 开始 -->
-    <view class="months_wrap">
+    <view class="months_wrap" v-if="Object.keys(months).length!==0" >
       <!-- 上 -->
       <view class="months_title">
         <!-- 左 -->
@@ -32,8 +32,10 @@
       </view>
       <!-- 下 -->
       <view class="months_content">
-        <view class="image_wrap" v-for="item in months.items" :key="item.id">
-          <image :src="item.img+item.rule.replace('$<Height>','360')" mode="aspectFill"></image>
+        <view class="image_wrap" v-for="(item, index) in months.items" :key="item.id">
+          <go-detail :list="months.items" :index="index" style="height:100%;width:100%">
+            <image :src="item.img+item.rule.replace('$<Height>','360')" mode="aspectFill"></image>
+          </go-detail>
         </view>
       </view>
     </view>  
@@ -44,8 +46,10 @@
         <text>热门</text>
       </view>
       <view class="hot_content">
-        <view class="img_wrap" v-for="item in hots" :key="item.id">
-          <image :src="item.thumb" mode="widthFix"></image>
+        <view class="img_wrap" v-for="(item, index) in hots" :key="item.id">
+          <go-detail :list="hots" :index="index" style="height:100%;width:100%">
+            <image :src="item.thumb" mode="widthFix"></image>
+          </go-detail>
         </view>
       </view>
     </view>
@@ -55,7 +59,11 @@
 
 <script>
 import moment from 'moment';
+import goDetail from '../../../components/goDetail'
 export default {
+  components: {
+    goDetail
+  },
   methods: {
     getList() {
       this.request({

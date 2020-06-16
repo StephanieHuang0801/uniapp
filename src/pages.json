@@ -1,10 +1,22 @@
 {
 	"pages": [ 
 		{
-			"path": "pages/home/index"
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTextStyle": "首页"
+			}
 		},
 		{
-			"path": "pages/album/index"
+			"path": "pages/album/index",
+			"style": {
+				"navigationBarTextStyle": "专辑详情"
+			}
+		},
+		{
+			"path": "pages/imgDetail/index",
+			"style": {
+				"navigationBarTextStyle": "图片详情"
+			}
 		}
 	],
 	"globalStyle": {
