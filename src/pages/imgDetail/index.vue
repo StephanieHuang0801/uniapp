@@ -61,11 +61,8 @@ export default {
         title: '下载中'
       })
       const res1 = await uni.downloadFile({url: this.imgDetail.img})
-      console.log('res1', res1)
       const {tempFilePath} = res1[1]
       const res2 = await uni.saveImageToPhotosAlbum({ filePath: tempFilePath})
-      console.log('res2', res2)
-      console.log('下载成功')
       uni.hideLoading()
       await uni.showToast({
         title: '下载成功'

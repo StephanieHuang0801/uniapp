@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-14 20:59:43
- * @LastEditTime: 2020-06-14 21:23:57
+ * @LastEditTime: 2020-06-20 17:17:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my-project\dist\dev\mp-weixin\components\swipeAction.vue
@@ -36,7 +36,7 @@ export default {
             return
         }
         let direction = ''
-        if (Math.abs(endX - this.startX) > 10) {
+        if (Math.abs(endX - this.startX) > 10 && Math.abs(endY - this.startY) < 10) {
             direction = endX -this.startX > 0 ? 'right': 'left'
         } else {
             return

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-04 22:03:32
- * @LastEditTime: 2020-06-14 16:12:19
+ * @LastEditTime: 2020-06-20 18:06:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my-project\src\pages\home\home-recommend\index.vue
@@ -83,7 +83,7 @@ export default {
           this.months.DD = moment(this.months.stime).format("DD")
         }
         this.hots = [...this.hots, ...res.res.vertical]
-        console.log('推荐列表', res.res.homepage[1].items)
+        // console.log('推荐列表', res.res.homepage[1].items)
       })
     },
     handlerToLower() {

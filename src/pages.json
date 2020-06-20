@@ -7,6 +7,12 @@
 			}
 		},
 		{
+			"path": "pages/imgCategory/index",
+			"style": {
+				"navigationBarTextStyle": "图片分类详情"
+			}
+		},
+		{
 			"path": "pages/album/index",
 			"style": {
 				"navigationBarTextStyle": "专辑详情"

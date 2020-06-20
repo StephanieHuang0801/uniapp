@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-04 22:02:17
- * @LastEditTime: 2020-06-14 15:20:26
+ * @LastEditTime: 2020-06-20 17:27:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \my-project\src\pages\home\index.vue
@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       items: ["推荐", "分类", "最新", "专辑"],
-      current: 3
+      current: 1
     };
   },
   components: {
